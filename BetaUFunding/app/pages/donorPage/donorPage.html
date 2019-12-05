@@ -1,0 +1,75 @@
+<!--********************************************************************************************************************
+    ** Database Management Systems                                                                                    **
+    ** PHP Exercise                                                                                                   **
+    ** 11/25/2019                                                                                                     **
+    **                                                                                                                **
+    ** Kaleb Gebrekirstos, Nick Smith, Justin Wagner                                                                  **                                                                **
+    **                                                                                                                **
+    ********************************************************************************************************************
+    -->
+
+<!--Front-end web page-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BetaUFunding</title>
+    <link rel="stylesheet" href="donorPage.css">
+</head>
+<body>
+<h1 align="left">Welcome to the Donor Page</h1>
+<form method="post" action="http://jcsites.juniata.edu/students/gebreks18/betaufunding/betaufunding.php">
+    <fieldset name="insert-field">
+        Social Security Number (SSN):<br>
+        <input type="text" name="SSN" placeholder="000000000">
+        <br>
+        Pledge Id:<br>
+        <select name="pledgeIds" >
+            <option type="text" value="22222">22222</option>
+        </select>
+        <br>
+        Last Name:<br>
+        <input type="text" name="lastName" placeholder="Doe">
+        <br>
+        First Name:<br>
+        <input type="text" name="firstName" placeholder="John">
+        <br>
+        Street:<br>
+        <input type="text" name="street" placeholder="First St">
+        <br>
+        Zip:<br>
+        <input type="text" name="zip" placeholder="11111">
+        <br>
+        Graduation Year(yyyy):<br>
+        <input type="text" name="gradYr">
+        <br>
+        Matching Corporation:<br>
+        <input type="text" name="corpName">
+        <br>
+        Marital Status:<br>
+        <div class="radio-class">
+            <input type="radio" name="mStatus" value="single" id="single" checked>
+            <label for="single">Single</label>
+            <input type="radio" name="mStatus" value="married" id="married">
+            <label for="married">Married</label>
+        </div>
+        <input type="text" name="spouseSSN" placeholder="If married, insert spouse's SSN."><br>
+        <button type="submit" name="action" value="insert">Insert Donor</button>
+    </fieldset>
+</form>
+<form method="post" action="http://jcsites.juniata.edu/students/gebreks18/betaufunding/betaufunding.php">
+    <fieldset name="delete-field">
+        Social Security Number:<br>
+        <input type="number" name="SSN" placeholder="000000000">
+        <br>
+        <button type="submit" name="action" value="delete">Delete Donor</button>
+    </fieldset>
+</form>
+<form method="post" action="http://jcsites.juniata.edu/students/gebreks18/betaufunding/betaufunding.php">
+    <fieldset style="text-align: center" name="report-field" >
+        <button type="submit" name="action" value="report" >View Report</button>
+    </fieldset>
+</form>
+</body>
+</html>
