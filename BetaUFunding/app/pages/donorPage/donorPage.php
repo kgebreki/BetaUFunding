@@ -27,78 +27,78 @@
 <body>
 <h1>Person Table</h1>
 <?php
-// Establish Connection
-$link = pg_connect("host=itcsdbms user= gebreks18 dbname=test3")
-or die ("Could not connect to database betaufunding");
-// Alert message
-function phpAlert($msg) {
-    echo '<script type="text/javascript">alert("' . $msg . '")</script>';
-}
-$SSN = $_POST['SSN'];
-$pledgeId = $_POST['pledgeIds'];
-$lastName = $_POST['lastName'];
-$firstName = $_POST['firstName'];
-$street = $_POST['street'];
-$zip = $_POST['zip'];
-$gradYr = $_POST['gradYr'];
-$corpName = $_POST['corpName'];
-$spouseSSN = $_POST['spouseSSN'];
+    // Establish Connection
+    $link = pg_connect("host=itcsdbms user= gebreks18 dbname=test3")
+    or die ("Could not connect to database betaufunding");
+    // Alert message
+    function phpAlert($msg) {
+        echo '<script type="text/javascript">alert("' . $msg . '")</script>';
+    }
+    $SSN = $_POST['SSN'];
+    $pledgeId = $_POST['pledgeIds'];
+    $lastName = $_POST['lastName'];
+    $firstName = $_POST['firstName'];
+    $street = $_POST['street'];
+    $zip = $_POST['zip'];
+    $gradYr = $_POST['gradYr'];
+    $corpName = $_POST['corpName'];
+    $spouseSSN = $_POST['spouseSSN'];
 
-if ($_POST['action'] == 'insert') {
-    // Creating null values
-    $spouseSSN = !empty($spouseSSN) ? "'$spouseSSN'" : "NULL";
-    $gradYr = !empty($gradYr) ? "'$gradYr'" : "NULL";
-    // Error handling for required fields
-    if (empty($SSN) || empty($lastName) || empty($firstName) || empty($street) || empty($zip) || empty($corpName)) {
-        phpAlert(   "ERROR!\\n\\nFields: SSN, Pledge Id, Last Name, First Name, Street, Zip, Matching Corporation cannot be left blank."   );
-    } else {
-        // query for inserting tuple into table
-        $query = "INSERT INTO person (SSN, pledgeId, lastName, firstName, street, zip, gradYr, corpName, spouseSSN)
-                        VALUES ($SSN, '$pledgeId', '$lastName', '$firstName', '$street', $zip, $gradYr, '$corpName', $spouseSSN)";
+    if ($_POST['action'] == 'insert') {
+        // Creating null values
+        $spouseSSN = !empty($spouseSSN) ? "'$spouseSSN'" : "NULL";
+        $gradYr = !empty($gradYr) ? "'$gradYr'" : "NULL";
+        // Error handling for required fields
+        if (empty($SSN) || empty($lastName) || empty($firstName) || empty($street) || empty($zip) || empty($corpName)) {
+            phpAlert(   "ERROR!\\n\\nFields: SSN, Pledge Id, Last Name, First Name, Street, Zip, Matching Corporation cannot be left blank."   );
+        } else {
+            // query for inserting tuple into table
+            $query = "INSERT INTO person (SSN, pledgeId, lastName, firstName, street, zip, gradYr, corpName, spouseSSN)
+                            VALUES ($SSN, '$pledgeId', '$lastName', '$firstName', '$street', $zip, $gradYr, '$corpName', $spouseSSN)";
+            $result = pg_query ($query)
+            or die ("\nQuery failed");
+            phpAlert(   "SUCCESS!\\n\\nDonor Id $SSN has been successfully added to the donor table."   );
+        }
+    } else if ($_POST['action'] == 'delete') {
+        if (empty($SSN)) {
+            phpAlert(   "ERROR!\\n\\nField: Social Security Number cannot be left blank."   );
+        } else {
+            // query for deleting tuple
+            $query = "DELETE FROM person WHERE SSN=$SSN";
+            $result = pg_query ($query)
+            or die ("Query failed");
+            phpAlert(   "SUCCESS!\\n\\nDonor Id $SSN has been successfully removed from the donor table."   );
+        }
+    } else if ($_POST['action'] == 'report') {
+        // query for fetching tuples
+        $query = "SELECT * FROM person";
         $result = pg_query ($query)
         or die ("\nQuery failed");
-        phpAlert(   "SUCCESS!\\n\\nDonor Id $SSN has been successfully added to the donor table."   );
-    }
-} else if ($_POST['action'] == 'delete') {
-    if (empty($SSN)) {
-        phpAlert(   "ERROR!\\n\\nField: Social Security Number cannot be left blank."   );
-    } else {
-        // query for deleting tuple
-        $query = "DELETE FROM person WHERE SSN=$SSN";
-        $result = pg_query ($query)
-        or die ("Query failed");
-        phpAlert(   "SUCCESS!\\n\\nDonor Id $SSN has been successfully removed from the donor table."   );
-    }
-} else if ($_POST['action'] == 'report') {
-    // query for fetching tuples
-    $query = "SELECT * FROM person";
-    $result = pg_query ($query)
-    or die ("\nQuery failed");
-    // displaying result
-    print "<table style='border-collapse:collapse'>\n";
-    print "\t<tr>\n";
-    print "\t\t<td align='center' width='100'>SSN</td>\n";
-    print "\t\t<td align='center' width='100'>pledgeId</td>\n";
-    print "\t\t<td align='center' width='100'>lastName</td>\n";
-    print "\t\t<td align='center' width='100'>firstName</td>\n";
-    print "\t\t<td align='center' width='100'>street</td>\n";
-    print "\t\t<td align='center' width='100'>zip</td>\n";
-    print "\t\t<td align='center' width='100'>gradYr</td>\n";
-    print "\t\t<td align='center' width='100'>corpName</td>\n";
-    print "\t\t<td align='center' width='100'>spouseSSN</td>\n";
-    print "\t</tr>\n";
-    while($line = pg_fetch_array($result, NULL, PGSQL_ASSOC)){
+        // displaying result
+        print "<table style='border-collapse:collapse'>\n";
         print "\t<tr>\n";
-        while(list($col_name, $col_value) = each($line)){
-            print "\t\t<td align='center' width='100'>$col_value</td>\n";
-        }
+        print "\t\t<td align='center' width='100'>SSN</td>\n";
+        print "\t\t<td align='center' width='100'>pledgeId</td>\n";
+        print "\t\t<td align='center' width='100'>lastName</td>\n";
+        print "\t\t<td align='center' width='100'>firstName</td>\n";
+        print "\t\t<td align='center' width='100'>street</td>\n";
+        print "\t\t<td align='center' width='100'>zip</td>\n";
+        print "\t\t<td align='center' width='100'>gradYr</td>\n";
+        print "\t\t<td align='center' width='100'>corpName</td>\n";
+        print "\t\t<td align='center' width='100'>spouseSSN</td>\n";
         print "\t</tr>\n";
+        while($line = pg_fetch_array($result, NULL, PGSQL_ASSOC)){
+            print "\t<tr>\n";
+            while(list($col_name, $col_value) = each($line)){
+                print "\t\t<td align='center' width='100'>$col_value</td>\n";
+            }
+            print "\t</tr>\n";
+        }
+        print "<table>\n";
+    } else {
+        // Invalid function
+        phpAlert(   "ERROR!\\n\\nInvalid function!"   );
     }
-    print "<table>\n";
-} else {
-    // Invalid function
-    phpAlert(   "ERROR!\\n\\nInvalid function!"   );
-}
 pg_close($link);
 ?>
 </body>
