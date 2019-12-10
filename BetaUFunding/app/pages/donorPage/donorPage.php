@@ -22,7 +22,7 @@
     <meta name="GENERATOR" content="Microsoft FrontPage 5.0">
     <meta name="ProgId" content="FrontPage.Editor.Document">
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-    <title>Presidents Table</title>
+    <title>Person Table</title>
 </head>
 <body>
 <h1>Person Table</h1>
@@ -44,8 +44,9 @@
     $corpName = $_POST['corpName'];
     $spouseSSN = $_POST['spouseSSN'];
 
-    if ($_POST['action'] == 'insert') {
-        // Creating null values
+    if ($_POST['action'] == 'yes') {
+        header("Location: http://jcsites.juniata.edu/students/gebreks18/betaufunding/pledgepage.html");
+        /*// Creating null values
         $spouseSSN = !empty($spouseSSN) ? "'$spouseSSN'" : "NULL";
         $gradYr = !empty($gradYr) ? "'$gradYr'" : "NULL";
         // Error handling for required fields
@@ -58,9 +59,10 @@
             $result = pg_query ($query)
             or die ("\nQuery failed");
             phpAlert(   "SUCCESS!\\n\\nDonor Id $SSN has been successfully added to the donor table."   );
-        }
-    } else if ($_POST['action'] == 'delete') {
-        if (empty($SSN)) {
+        }*/
+    } else if ($_POST['action'] == 'no') {
+        phpAlert(   "Thank you, and have a wonderful day!"   );
+        /*if (empty($SSN)) {
             phpAlert(   "ERROR!\\n\\nField: Social Security Number cannot be left blank."   );
         } else {
             // query for deleting tuple
@@ -68,8 +70,8 @@
             $result = pg_query ($query)
             or die ("Query failed");
             phpAlert(   "SUCCESS!\\n\\nDonor Id $SSN has been successfully removed from the donor table."   );
-        }
-    } else if ($_POST['action'] == 'report') {
+        }*/
+    } /*else if ($_POST['action'] == 'report') {
         // query for fetching tuples
         $query = "SELECT * FROM person";
         $result = pg_query ($query)
@@ -95,11 +97,11 @@
             print "\t</tr>\n";
         }
         print "<table>\n";
-    } else {
+    }*/ else {
         // Invalid function
         phpAlert(   "ERROR!\\n\\nInvalid function!"   );
     }
-pg_close($link);
+    pg_close($link);
 ?>
 </body>
 </html>
