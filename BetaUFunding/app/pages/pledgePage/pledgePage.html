@@ -8,11 +8,46 @@
 <body>
 <h1 align="left">Welcome to the Pledge Page</h1>
 <p>All donations at this time will directly help the BetaUFunding Program as we strive to help Juniata College
-    retain its status as one of the best colleges.
+    retain its status as one of the best Liberal Arts Colleges.
 </p>
 <p>Thank you for your generous support!</p>
 <form>
-
+    <div>
+        <h2>Select an amount</h2>
+        <button>$1000</button>
+        <button>$500</button>
+        <button>$100</button>
+        <button>$50</button>
+        <input type="text" name="amount" placeholder="USD">
+        <br> <br>
+        Payment Option:
+        <select name="paymentPlan">
+            <option> One Time Payment</option>
+            <option> Monthly</option>
+            <option> Quarterly</option>
+            <option> Yearly</option>
+        </select>
+        <br> <br>
+        How did you hear about us?
+        <select name="events">
+            <option> Mountain Day</option>
+            <option> Lobsterfest</option>
+            <option> Liberal Arts Symposium</option>
+            <option> Madrigal</option>
+        </select>
+        <br> <br>
+        Payment Plan:
+        <div class="payment-class">
+            <input type="radio" name="paymentPlan" value="debit" id="debit" checked>
+            <label for="debit">Debit</label>
+            <input type="radio" name="paymentPlan" value="credit" id="credit">
+            <label for="credit">Credit</label>
+            <input type="radio" name="paymentPlan" value="check" id="check">
+            <label for="check">Check</label>
+        </div> <br> <br> <br> <br> <br> <br> <br>
+        Matching Corporation:<br>
+        <input type="text" name="matchingCorp">
+    </div>
 </form>
 
 </body>
