@@ -11,14 +11,14 @@
     retain its status as one of the best Liberal Arts Colleges.
 </p>
 <p>Thank you for your generous support!</p>
-<form>
-    <div>
+<form method="post" action="http://jcsites.juniata.edu/students/gebreks18/betaufunding/pledgepage.php">
+    <fieldset>
         <h2>Select an amount</h2>
         <button>$1000</button>
         <button>$500</button>
         <button>$100</button>
-        <button>$50</button>
-        <input type="text" name="amount" placeholder="USD">
+        <button>$50</button> <br>
+        <input type="text" name="amount" placeholder="$0.00">
         <br> <br>
         Payment Option:
         <select name="paymentPlan">
@@ -28,7 +28,15 @@
             <option> Yearly</option>
         </select>
         <br> <br>
-        How did you hear about us?
+        What project is it assigned to?
+        <select name="events">
+            <option> Unassigned</option>
+            <option> Beeghly Library Renovation</option>
+            <option> Student Center Elevator</option>
+            <option> Rugby Field Renovation</option>
+        </select>
+        <br> <br>
+        What event did you attend?
         <select name="events">
             <option> Mountain Day</option>
             <option> Lobsterfest</option>
@@ -36,7 +44,7 @@
             <option> Madrigal</option>
         </select>
         <br> <br>
-        Payment Plan:
+        Payment Plan: <br>
         <div class="payment-class">
             <input type="radio" name="paymentPlan" value="debit" id="debit" checked>
             <label for="debit">Debit</label>
@@ -44,10 +52,13 @@
             <label for="credit">Credit</label>
             <input type="radio" name="paymentPlan" value="check" id="check">
             <label for="check">Check</label>
-        </div> <br> <br> <br> <br> <br> <br> <br>
+        </div>
+        <br> <br> <br> <br> <br> <br> <br>
         Matching Corporation:<br>
         <input type="text" name="matchingCorp">
-    </div>
+        <br> <br>
+        <button>Submit</button>
+    </fieldset>
 </form>
 
 </body>
