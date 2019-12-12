@@ -36,6 +36,11 @@
                             VALUES ('$amountPledged', '$paymentPlan', '$projects', '$eventId', '$paymentType', '$matchingCorp', '$phoneNo')";
 		$result = pg_query ($query)
 		or die ("\nQuery failed");
+		// query to obtain pledgeId
+		$result = pg_query ($link, "SELECT * FROM pledge WHERE phoneNo='$phoneNo'");
+		$pledgeId = pg_fetch_result($result, 0, 0);
+		$_SESSION['pledgeId'] = $pledgeId;
+		$_SESSION['paymentPlan'] = $paymentPlan;
 		phpAlert(   "SUCCESS!\\n\\n Pledge has been successfully added to the database."   );
 		// add remaining amount attribute to pledge
     }
