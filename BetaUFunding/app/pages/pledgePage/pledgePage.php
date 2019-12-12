@@ -1,3 +1,5 @@
+<?php session_start();
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,9 +12,11 @@
     $paymentPlan = $_POST['paymentPlan'];
     $projects = $_POST['projects'];
     $events = $_POST['events'];
-    $paymentOption = $_POST['paymentOption'];
+    $paymentType = $_POST['paymentType'];
     $matchingCorp = $_POST['matchingCorp'];
-
+    // Data passed from previous page
+    $phoneNo = $_SESSION['phoneNo'];
+    
     // Establish Connection
     $link = pg_connect("host=itcsdbms user= gebreks18 dbname=test3")
     or die ("Could not connect to database betaufunding");
@@ -20,7 +24,20 @@
     function phpAlert($msg) {
         echo '<script type="text/javascript">alert("' . $msg . '")</script>';
     }
-
+	// Check to see if all fields are filled out
+    if (empty($amountPledged) || empty($paymentPlan) || empty($projects) || empty($events) || empty($paymentType) || empty($matchingCorp)) {
+		phpAlert(   "ERROR!\\n\\nPlease fill out all fields."   );
+	} else {
+        // query for getting eventID from database
+		$result = pg_query ($link, "SELECT * FROM events WHERE eventname='$events'");
+		$eventId = pg_fetch_result($result, 0, 0);
+		// query to insert tuples into appropriate tables
+		$query = "INSERT INTO pledge (amountPledged, paymentPlan, projectName, eventId, paymentType, corpName, phoneNo )
+                            VALUES ('$amountPledged', '$paymentPlan', '$projects', '$eventId', '$paymentType', '$matchingCorp', '$phoneNo')";
+		$result = pg_query ($query)
+		or die ("\nQuery failed");
+		phpAlert(   "SUCCESS!\\n\\n Pledge has been successfully added to the database."   );
+    }
     // Use a trigger to send a thank you email or text to who ever donates money or whenever due date is near
     // use a trigger to add whatever amount that a user pays and subtract that from the total amount that they pledged
     /*

@@ -1,3 +1,5 @@
+<?php session_start();
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +16,8 @@
     $zip = $_POST['zip'];
     $gradYr = $_POST['gradYr'];
     $spousePhNo = $_POST['spousePhNo'];
-
+    // Pass phone number into session variable
+    $_SESSION['phoneNo'] = $phoneNo;
     // Establish Connection
     $link = pg_connect("host=itcsdbms user= gebreks18 dbname=test3")
     or die ("Could not connect to database betaufunding");
@@ -30,23 +33,23 @@
         // Error handling for required fields
         if (empty($phoneNo) || empty($lastName) || empty($firstName) || empty($street) || empty($zip) || empty($email)) {
             phpAlert(   "ERROR!\\n\\nFields: Last Name, First Name, Email, Phone Number, Street, Zip cannot be left blank."   );
-            header("Location: http://jcsites.juniata.edu/students/gebreks18/betaufunding/personpage.html");
         } else {
             // query for inserting tuple into table
-            $query = "INSERT INTO person (lastName, firstName, email, phoneNo, street, zip, gradYr, spousePhNo, pledgeId )
-                            VALUES ('$lastName', '$firstName', '$email', '$phoneNo', '$street', '$zip', '$gradYr', '$spousePhNo', DEFAULT )";
+            $query = "INSERT INTO person (lastName, firstName, email, phoneNo, street, zip, gradYr, spousePhNo )
+                            VALUES ('$lastName', '$firstName', '$email', '$phoneNo', '$street', '$zip', '$gradYr', '$spousePhNo')";
             $result = pg_query ($query)
             or die ("\nQuery failed");
             phpAlert(   "SUCCESS!\\n\\n$firstName $lastName has been successfully added to the database."   );
         }
     }
     if ($_POST['action'] == 'yes') {
-        AddPerson();
+        //AddPerson();
         header("Location: http://jcsites.juniata.edu/students/gebreks18/betaufunding/pledgepage.html");
     } else if ($_POST['action'] == 'no') {
-        AddPerson();
-        phpAlert(   "Thank you, and have a wonderful day!"   );
-        header("Location: http://www.juniata.edu");
+        //AddPerson();
+        //phpAlert(   "Thank you, and have a wonderful day!"   );
+        //header("Location: http://www.juniata.edu");
+		header("Location: http://jcsites.juniata.edu/students/gebreks18/betaufunding/pledgepage.html");
     } else {
         // Invalid function
         phpAlert(   "ERROR!\\n\\nInvalid function!"   );

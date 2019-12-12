@@ -14,11 +14,8 @@
 <form method="post" action="http://jcsites.juniata.edu/students/gebreks18/betaufunding/pledgepage.php">
     <fieldset>
         <h2>Select an amount</h2>
-        <button>$1000</button>
-        <button>$500</button>
-        <button>$100</button>
-        <button>$50</button> <br>
-        <input type="text" name="amountPledged" placeholder="$0.00">
+        Pledge Amount:
+        <input type="number" name="amountPledged" placeholder="$0.00">
         <br> <br>
         Payment Plan:
         <select name="paymentPlan">
@@ -29,37 +26,37 @@
         </select>
         <br> <br>
         What project is it assigned to?
-        <select name="project">
-            <option value="unassigned"> Unassigned</option>
-            <option value="beeghlyLib"> Beeghly Library Renovation</option>
-            <option value="studentElv"> Student Center Elevator</option>
-            <option value="rugbyFld"> Rugby Field Renovation</option>
+        <select name="projects">
+            <option value="Unassigned"> Unassigned</option>
+            <option value="Beeghly Library Renovation"> Beeghly Library Renovation</option>
+            <option value="Student Center Elevator"> Student Center Elevator</option>
+            <option value="Rugby Field Renovation"> Rugby Field Renovation</option>
         </select>
         <br> <br>
         What event did you attend?
         <select name="events">
-            <option value="mntDay"> Mountain Day</option>
-            <option value="lobFst"> Lobsterfest</option>
-            <option value="libSym"> Liberal Arts Symposium</option>
-            <option value="madrigal"> Madrigal</option>
+            <option value="None"> None</option>
+            <option value="Mountain Day"> Mountain Day</option>
+            <option value="Lobsterfest"> Lobsterfest</option>
+            <option value="Liberal Arts Symposium"> Liberal Arts Symposium</option>
+            <option value="Madrigal"> Madrigal</option>
         </select>
         <br> <br>
-        Payment Option: <br>
+        Payment Type: <br>
         <div class="payment-class">
-            <input type="radio" name="paymentOption" value="debit" id="debit" checked>
+            <input type="radio" name="paymentType" value="db" id="debit" checked>
             <label for="debit">Debit</label>
-            <input type="radio" name="paymentOption" value="credit" id="credit">
+            <input type="radio" name="paymentType" value="cr" id="credit">
             <label for="credit">Credit</label>
-            <input type="radio" name="paymentOption" value="check" id="check">
+            <input type="radio" name="paymentType" value="ck" id="check">
             <label for="check">Check</label>
         </div>
         <br> <br> <br> <br> <br> <br> <br>
         Matching Corporation:<br>
         <input type="text" name="matchingCorp" placeholder="optional">
         <br> <br>
-        <button>Submit</button>
+        <button>Submit Pledge</button>
     </fieldset>
 </form>
-
 </body>
 </html>
