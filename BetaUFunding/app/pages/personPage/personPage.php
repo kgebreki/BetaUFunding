@@ -8,12 +8,12 @@
 <?php
     $lastName = $_POST['lastName'];
     $firstName = $_POST['firstName'];
+    $email = $_POST['email'];
     $phoneNo = $_POST['phoneNo'];
     $street = $_POST['street'];
     $zip = $_POST['zip'];
     $gradYr = $_POST['gradYr'];
     $spousePhNo = $_POST['spousePhNo'];
-    $pledgeId = $_POST['pledgeIds'];
 
     // Establish Connection
     $link = pg_connect("host=itcsdbms user= gebreks18 dbname=test3")
@@ -24,24 +24,22 @@
     }
     // Add person into DB
     function AddPerson() {
-        // todo: find a way to create a serial pledge ID
         // Creating null values
         $spousePhNo = !empty($spousePhNo) ? "'$spousePhNo'" : "NULL";
         $gradYr = !empty($gradYr) ? "'$gradYr'" : "NULL";
         // Error handling for required fields
-        if (empty($phoneNo) || empty($lastName) || empty($firstName) || empty($street) || empty($zip)) {
-            phpAlert(   "ERROR!\\n\\nFields: Last Name, First Name, Phone Number, Street, Zip cannot be left blank."   );
+        if (empty($phoneNo) || empty($lastName) || empty($firstName) || empty($street) || empty($zip) || empty($email)) {
+            phpAlert(   "ERROR!\\n\\nFields: Last Name, First Name, Email, Phone Number, Street, Zip cannot be left blank."   );
             header("Location: http://jcsites.juniata.edu/students/gebreks18/betaufunding/personpage.html");
         } else {
             // query for inserting tuple into table
-            $query = "INSERT INTO person (lastName, firstName, phoneNo, street, zip, gradYr, spousePhNo, pledgeId )
-                            VALUES ('$lastName', '$firstName', '$phoneNo', '$street', '$zip', '$gradYr', '$spousePhNo', '$pledgeId')";
+            $query = "INSERT INTO person (lastName, firstName, email, phoneNo, street, zip, gradYr, spousePhNo, pledgeId )
+                            VALUES ('$lastName', '$firstName', '$email', '$phoneNo', '$street', '$zip', '$gradYr', '$spousePhNo', DEFAULT )";
             $result = pg_query ($query)
             or die ("\nQuery failed");
             phpAlert(   "SUCCESS!\\n\\n$firstName $lastName has been successfully added to the database."   );
         }
     }
-
     if ($_POST['action'] == 'yes') {
         AddPerson();
         header("Location: http://jcsites.juniata.edu/students/gebreks18/betaufunding/pledgepage.html");

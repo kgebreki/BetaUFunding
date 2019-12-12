@@ -18,44 +18,44 @@
         <button>$500</button>
         <button>$100</button>
         <button>$50</button> <br>
-        <input type="text" name="amount" placeholder="$0.00">
+        <input type="text" name="amountPledged" placeholder="$0.00">
         <br> <br>
-        Payment Option:
+        Payment Plan:
         <select name="paymentPlan">
-            <option> One Time Payment</option>
-            <option> Monthly</option>
-            <option> Quarterly</option>
-            <option> Yearly</option>
+            <option value="ONTM"> One Time Payment</option>
+            <option value="MTLY"> Monthly</option>
+            <option value="QRTY"> Quarterly</option>
+            <option value="YRLY"> Yearly</option>
         </select>
         <br> <br>
         What project is it assigned to?
-        <select name="events">
-            <option> Unassigned</option>
-            <option> Beeghly Library Renovation</option>
-            <option> Student Center Elevator</option>
-            <option> Rugby Field Renovation</option>
+        <select name="project">
+            <option value="unassigned"> Unassigned</option>
+            <option value="beeghlyLib"> Beeghly Library Renovation</option>
+            <option value="studentElv"> Student Center Elevator</option>
+            <option value="rugbyFld"> Rugby Field Renovation</option>
         </select>
         <br> <br>
         What event did you attend?
         <select name="events">
-            <option> Mountain Day</option>
-            <option> Lobsterfest</option>
-            <option> Liberal Arts Symposium</option>
-            <option> Madrigal</option>
+            <option value="mntDay"> Mountain Day</option>
+            <option value="lobFst"> Lobsterfest</option>
+            <option value="libSym"> Liberal Arts Symposium</option>
+            <option value="madrigal"> Madrigal</option>
         </select>
         <br> <br>
-        Payment Plan: <br>
+        Payment Option: <br>
         <div class="payment-class">
-            <input type="radio" name="paymentPlan" value="debit" id="debit" checked>
+            <input type="radio" name="paymentOption" value="debit" id="debit" checked>
             <label for="debit">Debit</label>
-            <input type="radio" name="paymentPlan" value="credit" id="credit">
+            <input type="radio" name="paymentOption" value="credit" id="credit">
             <label for="credit">Credit</label>
-            <input type="radio" name="paymentPlan" value="check" id="check">
+            <input type="radio" name="paymentOption" value="check" id="check">
             <label for="check">Check</label>
         </div>
         <br> <br> <br> <br> <br> <br> <br>
         Matching Corporation:<br>
-        <input type="text" name="matchingCorp">
+        <input type="text" name="matchingCorp" placeholder="optional">
         <br> <br>
         <button>Submit</button>
     </fieldset>
