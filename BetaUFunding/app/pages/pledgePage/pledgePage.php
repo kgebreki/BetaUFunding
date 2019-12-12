@@ -37,6 +37,7 @@
 		$result = pg_query ($query)
 		or die ("\nQuery failed");
 		phpAlert(   "SUCCESS!\\n\\n Pledge has been successfully added to the database."   );
+		// add remaining amount attribute to pledge
     }
     // Use a trigger to send a thank you email or text to who ever donates money or whenever due date is near
     // use a trigger to add whatever amount that a user pays and subtract that from the total amount that they pledged

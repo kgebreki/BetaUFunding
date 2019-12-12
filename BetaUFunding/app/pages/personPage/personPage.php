@@ -47,9 +47,8 @@
         header("Location: http://jcsites.juniata.edu/students/gebreks18/betaufunding/pledgepage.html");
     } else if ($_POST['action'] == 'no') {
         //AddPerson();
-        //phpAlert(   "Thank you, and have a wonderful day!"   );
+        phpAlert(   "Thank you, and have a wonderful day!"   );
         //header("Location: http://www.juniata.edu");
-		header("Location: http://jcsites.juniata.edu/students/gebreks18/betaufunding/pledgepage.html");
     } else {
         // Invalid function
         phpAlert(   "ERROR!\\n\\nInvalid function!"   );
