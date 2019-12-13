@@ -21,6 +21,7 @@
     // Establish Connection
     $link = pg_connect("host=itcsdbms user= gebreks18 dbname=betaufunding2")
     or die ("Could not connect to database betaufunding");
+	/*pg_query($link, 'LISTEN "new_user"'); // listen to notifications from trigger*/
     // Alert message
     function phpAlert($msg) {
         echo '<script type="text/javascript">alert("' . $msg . '")</script>';
@@ -50,6 +51,15 @@
 			}
 		}
     }
+/*	while(1) {
+		$notify = pg_get_notify($link);
+		if (!$notify) {
+			echo "No messages\n";
+		} else {
+			mail($email,'BetaUFunding','Thank you for registering with BetaUFunding');
+			phpAlert("Email Sent");
+		}
+	}*/
     pg_close($link);
 ?>
 </body>
